@@ -4,6 +4,7 @@ var generatePassword = function() {
   // ASCII Char Code Arrays
   var upperCase = arrayMinToMax(65, 90);
   var lowerCase = arrayMinToMax(97, 122);
+  // does this need to be .concat or does + work?
   var specialChar = arrayMinToMax((33, 47) + (58, 63) + (91, 96) + (123, 126));
   var numChar = arrayMinToMax(48, 57);
   var combinedArray = [];
@@ -35,7 +36,7 @@ var generatePassword = function() {
   var promptUpperCase = window.confirm("Do you want uppercase letters in the password?");
   // if true, include upperCase array
   if (promptUpperCase) {
-    var upperCase
+    combinedArray = combinedArray.concat(upperCase);
   }
   // end uppercase
 
@@ -43,7 +44,7 @@ var generatePassword = function() {
   var promptSpecialChar = window.confirm("Do you want special characters in the password?");
   // if true, include specialChar array
   if (promptSpecialChar) {
-    var specialChar
+    combinedArray = combinedArray.concat(specialChar);
   }
   // end special char
 
@@ -51,20 +52,23 @@ var generatePassword = function() {
   var promptNumChar = window.confirm("Do you want numbers in the password?");
   // if true, include numChar array
   if (promptNumChar) {
-    var numChar
+    combinedArray = combinedArray.concat(numChar);
   }
   // end number
 
   // blank variable for password to write to
   var userPassword = "";
 
-  function arrayMinToMax(min, max) {
-    var array = []
-    for (var i = 0; i <= max; i++) {
-      array.push(i)
-    }
-    return array
+  // place code to convert ASCII char here once you figure it out
+  //
+
+  // for loop iterates until i is no longer less that promptLength
+  for (var i = 0; i < promptLength; i++) {
+    // iterates until userPassword at least equals combinedArray
+    userPassword += combinedArray[Math.floor(Math.random() * combinedArray.length)];
   }
+  
+  return userPassword;
 }
 // end of my code
 
