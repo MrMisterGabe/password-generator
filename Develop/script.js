@@ -1,40 +1,68 @@
 // Assignment code here
+// start of my code
+var generatePassword = function() {
+  // ASCII Char Code Arrays
+  var upperCase = arrayMinToMax(65, 90);
+  var lowerCase = arrayMinToMax(97, 122);
+  var specialChar = arrayMinToMax((33, 47) + (58, 63) + (91, 96) + (123, 126));
+  var numChar = arrayMinToMax(48, 57);
+  var concatArray = [];
 
-// ASCII Char Code Arrays
-var upperCase = arrayMinToMax(65, 90);
-var lowerCase = arrayMinToMax(97, 122);
-var specialChar = arrayMinToMax((33, 47) + (58, 63) + (91, 96) + (123, 126));
-var numChar = arrayMinToMax(48, 57);
-
-var passwordLength = function () {
+  // start password length
   // ask user to select a password character length between 8 and 128 characters
   var promptLength = window.prompt("Choose a password length between 8 and 128 characters.");
-  // if input is blank or null, recursively call passwordLength function
-  if (promptLength === "" || promptLength === null) {
-    window.alert("Invalid selection, please try again!");
-    return passwordLength();
+
+  // if input is blank, null, or less than 8 or greater than 128 repeat prompt
+  while (promptLength === "" || promptLength === null || promptLength < 8 || promptLength > 128) {
+    window.alert("Invalid selection, pick select a password length between 8 and 128 characters!");
+    promptLength = prompt("Choose a password length between 8 and 128 characters.");
   }
   //take input of promptLength and turn it into an integer
   promptLength = parseInt(promptLength);
+  // promptLength results
+  console.log(promptLength);
+  // end password length
 
-  //if input is less than 8 or greater than 128, recursively call promptLength function
-  if (promptLength < 8 || passwordLength > 128) {
-    passwordLength = prompt("You need to select a length between 8 and 128 characters! Please try again.");
-    return passwordLength();
-  } else {
-    console.log(promptLength);
+  // start lowercase
+  var promptLowerCase = window.confirm("Do you want lowercase letters in the password?");
+  // if true, include lowerCase array
+  if (promptLowerCase) {
+    var lowerCase
+  }
+  // end lowercase
+
+  // start uppercase
+  var promptUpperCase = window.confirm("Do you want uppercase letters in the password?");
+  // if true, include upperCase array
+  if (promptUpperCase) {
+    var upperCase
+  }
+  // end uppercase
+
+  // start special char
+  var promptSpecialChar = window.confirm("Do you want special characters in the password?");
+  // if true, include specialChar array
+  if (promptSpecialChar) {
+    var specialChar
+  }
+  // end special char
+
+  // start number
+  var promptNumChar = window.confirm("Do you want numbers in the password?");
+  // if true, include numChar array
+  if (promptNumChar) {
+    var numChar
+  }
+  // end number
+  function arrayMinToMax(min, max) {
+    var array = []
+    for (var i = 0; i <= max; i++) {
+      array.push(i)
+    }
+    return array
   }
 }
-var passwordCriteria = function() {
-}
-
-// cycle through arrays to generate password
-function arrayMinToMax(min, max) {
-  for (var i = min; i <= max; i++) {
-    array.push(i)
-  }
-  return array
-}
+// end of my code
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
