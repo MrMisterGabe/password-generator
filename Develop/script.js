@@ -6,7 +6,7 @@ var generatePassword = function() {
   var lowerCase = arrayMinToMax(97, 122);
   var specialChar = arrayMinToMax((33, 47) + (58, 63) + (91, 96) + (123, 126));
   var numChar = arrayMinToMax(48, 57);
-  var concatArray = [];
+  var combinedArray = [];
 
   // start password length
   // ask user to select a password character length between 8 and 128 characters
@@ -27,7 +27,7 @@ var generatePassword = function() {
   var promptLowerCase = window.confirm("Do you want lowercase letters in the password?");
   // if true, include lowerCase array
   if (promptLowerCase) {
-    var lowerCase
+    combinedArray = combinedArray.concat(lowerCase);
   }
   // end lowercase
 
@@ -54,6 +54,10 @@ var generatePassword = function() {
     var numChar
   }
   // end number
+
+  // blank variable for password to write to
+  var userPassword = "";
+
   function arrayMinToMax(min, max) {
     var array = []
     for (var i = 0; i <= max; i++) {
