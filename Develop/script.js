@@ -4,8 +4,15 @@ var generatePassword = function() {
   // ASCII Char Code Arrays
   var upperCase = arrayMinToMax(65, 90);
   var lowerCase = arrayMinToMax(97, 122);
-  // does this need to be .concat or does + work?
-  var specialChar = arrayMinToMax((33, 47) + (58, 63) + (91, 96) + (123, 126));
+  var specialChar = arrayMinToMax(33, 33).concat(
+    arrayMinToMax(35, 47)
+    ).concat(
+    arrayMinToMax(58, 63)
+    ).concat(
+      arrayMinToMax(91, 96)
+      ).concat(
+        arrayMinToMax(123, 126)
+        );
   var numChar = arrayMinToMax(48, 57);
   var combinedArray = [];
 
@@ -18,57 +25,62 @@ var generatePassword = function() {
     window.alert("Invalid selection, pick select a password length between 8 and 128 characters!");
     promptLength = prompt("Choose a password length between 8 and 128 characters.");
   }
-  //take input of promptLength and turn it into an integer
-  promptLength = parseInt(promptLength);
-  // promptLength results
-  console.log(promptLength);
   // end password length
 
   // start lowercase
-  var promptLowerCase = window.confirm("Do you want lowercase letters in the password?");
-  // if true, include lowerCase array
+  // window prompt for user to confirm if they want lowercase letters
+  var promptLowerCase = window.confirm("Do you want LOWERCASE letters in the password?");
+  // if true, include lowerCase array in combinedArray
   if (promptLowerCase) {
     combinedArray = combinedArray.concat(lowerCase);
   }
   // end lowercase
 
   // start uppercase
-  var promptUpperCase = window.confirm("Do you want uppercase letters in the password?");
-  // if true, include upperCase array
+  // window prompt for user to confirm if they want uppercase letters
+  var promptUpperCase = window.confirm("Do you want UPPERCASE letters in the password?");
+  // if true, include upperCase array in combinedArray
   if (promptUpperCase) {
     combinedArray = combinedArray.concat(upperCase);
   }
   // end uppercase
 
   // start special char
-  var promptSpecialChar = window.confirm("Do you want special characters in the password?");
-  // if true, include specialChar array
+  // window prompt for user to confirm if they want special characters
+  var promptSpecialChar = window.confirm("Do you want SPECIAL characters in the password?");
+  // if true, include specialChar array in combinedArray
   if (promptSpecialChar) {
     combinedArray = combinedArray.concat(specialChar);
   }
   // end special char
 
   // start number
-  var promptNumChar = window.confirm("Do you want numbers in the password?");
-  // if true, include numChar array
+  // window prompt for user to confirm if they want numbers
+  var promptNumChar = window.confirm("Do you want NUMBERS in the password?");
+  // if true, include numChar array in combinedArray
   if (promptNumChar) {
     combinedArray = combinedArray.concat(numChar);
   }
   // end number
 
-  // blank variable for password to write to
-  var userPassword = "";
-
-  // place code to convert ASCII char here once you figure it out
-  //
-
-  // for loop iterates until i is no longer less that promptLength
-  for (var i = 0; i < promptLength; i++) {
-    // iterates until userPassword at least equals combinedArray
-    userPassword += combinedArray[Math.floor(Math.random() * combinedArray.length)];
+  function arrayMinToMax(min, max) {
+    var array = []
+    for (var i = min; i <= max; i++) {
+      array.push(i)
+    }
+    return array
   }
-  
-  return userPassword;
+
+  // empty Array to return for loop result later.
+  var convertPasswordChar = []
+  // for loop to generate characterCode string equal to promptLength with combinedArray selections.
+  for (var i = 0; i < promptLength; i++) {
+    var characterCode = combinedArray[Math.floor(Math.random() * combinedArray.length)]
+    // convert string from ASCII code to characters
+    convertPasswordChar.push(String.fromCharCode(characterCode));
+  }
+  // return joined convertPasswordChar
+  return convertPasswordChar.join('');
 }
 // end of my code
 
