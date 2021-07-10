@@ -4,9 +4,7 @@ var generatePassword = function() {
   // ASCII Char Code Arrays
   var upperCase = arrayMinToMax(65, 90);
   var lowerCase = arrayMinToMax(97, 122);
-  var specialChar = arrayMinToMax(33, 33).concat(
-    arrayMinToMax(35, 47)
-    ).concat(
+  var specialChar = arrayMinToMax(33, 47).concat(
     arrayMinToMax(58, 63)
     ).concat(
       arrayMinToMax(91, 96)
